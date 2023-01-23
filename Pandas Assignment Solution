@@ -103,23 +103,140 @@ print("Given Dataframe :\n", df)
 
 Q9. How do you concatenate two Pandas DataFrames?
 
+Example:
+
+# Merging 2 Data Frames
+data1 = { 'Name': ['Jai', 'Anuj', 'Jai', 'Prince'],
+         'Age' : [27,24,22,32],
+         'Address' : ['Nagpur', 'Kanpur', 'Allahabad', 'Kannauj'],
+         'Qualification' : ['Msc', 'MA', 'MCA', 'Phd'],
+         'Salary' : [3423, 43234, 34234, 34232]
+}
+
+data2 = { 'Name': ['Gaurav', 'Anuj', 'Prince', 'Abhi', 'Gaurav'],
+         'Age' : [33,36,27,32,28],
+         'Address' : ['Jaunpur', 'Kanpur', 'Allahabad', 'Aligarh', 'Varanasi'],
+         'Qualification' : ['B.Tech', 'B.Com', 'Msc', 'MA', 'B.Tech'],
+         'Salary' : [2434345, 54545, 5656565, 43435, 668788]
+}
+df1 = pd.DataFrame(data1, index = [0,1,2,3])
+df2 = pd.DataFrame(data2, index = [4,5,6,7,8])
+df_concat = [df1,df2]
+res = pd.concat(df_concat)
+print("Concatenated DataFrame", res)
+
 Q10. How do you merge two Pandas DataFrames on a specific column?
 
 Q11. How do you group data in a Pandas DataFrame by a specific column and apply an aggregation function?
 
+# Example GroupBy operation
+import pandas as pd
+data1 = { 'Name': ['Jai', 'Anuj', 'Jai', 'Prince', 'Gaurav', 'Anuj', 'Prince', 'Abhi'],
+         'Age' : [27,24,22,32,33,36,27,32],
+         'Address' : ['Nagpur', 'Kanpur', 'Allahabad', 'Kannauj', 'Jaunpur', 'Kanpur', 'Allahabad', 'Aligarh'],
+         'Qualification' : ['Msc', 'MA', 'MCA', 'Phd', 'B.Tech', 'B.Com', 'Msc', 'MA']
+}
+df_new = pd.DataFrame(data1)
+# Group by column Name
+df_new.groupby('Name')
+print(df_new.groupby('Name').groups)
+
+print(df_new.groupby(['Name']).sum())
+
 Q12. How do you pivot a Pandas DataFrame?
+
+Example:
+
+import pandas as pd
+data1 = { 'Name': ['Jai', 'Anuj', 'Jai', 'Prince'],
+         'Age' : [27,24,22,32],
+         'Address' : ['Nagpur', 'Kanpur', 'Allahabad', 'Kannauj'],
+         'Qualification' : ['Msc', 'MA', 'MCA', 'Phd'],
+         'Salary' : [3423, 43234, 34234, 34232]
+}
+df1 = pd.DataFrame(data1)
+df1.pivot('Name', 'Age')
 
 Q13. How do you change the data type of a column in a Pandas DataFrame?
 
+Example:
+
+import pandas as pd
+ 
+# sample dataframe
+data1 = { 'Name': ['Jai', 'Anuj', 'Jai', 'Prince'],
+         'Age' : [27,24,22,32],
+         'Address' : ['Nagpur', 'Kanpur', 'Allahabad', 'Kannauj'],
+         'Qualification' : ['Msc', 'MA', 'MCA', 'Phd'],
+         'Salary' : [3423, 43234, 34234, 34232]
+}
+df1 = pd.DataFrame(data1)
+# converting all columns to string type
+df1 = df1.astype(str)
+print(df1.dtypes)
+
 Q14. How do you sort a Pandas DataFrame by a specific column?
+
+Example: Sort by salary
+
+import pandas as pd
+ 
+# sample dataframe
+data1 = { 'Name': ['Jai', 'Anuj', 'Jai', 'Prince'],
+         'Age' : [27,24,22,32],
+         'Address' : ['Nagpur', 'Kanpur', 'Allahabad', 'Kannauj'],
+         'Qualification' : ['Msc', 'MA', 'MCA', 'Phd'],
+         'Salary' : [3423, 43234, 34234, 34232]
+}
+df1 = pd.DataFrame(data1)
+print(df1.sort_values(by=['Salary']))
 
 Q15. How do you create a copy of a Pandas DataFrame?
 
+Using the copy() function
+
+Example: copying the dataframe df into a variable res
+res = df.copy(deep=True)
+
 Q16. How do you filter rows of a Pandas DataFrame by multiple conditions?
+
+Example: Print is % is more than 80 and age is more than 19
+
+import pandas as pd
+record = {
+  
+ 'Name': ['Abhishek', 'Rahul', 'Ashu', 'Vinod', 'Ayush' ],
+ 'Age': [21, 19, 20, 18, 20],
+ 'Stream': ['Math', 'Commerce', 'Science', 'Computers', 'Science'],
+ 'Percentage': [84, 92, 99, 73, 85] }
+# create a dataframe
+dataframe = pd.DataFrame(record, columns = ['Name', 'Age', 'Stream', 'Percentage'])
+print("Given Dataframe :\n", dataframe) 
+
+# selecting rows based on condition if % is more than 80 and age is > 19
+rslt_df = dataframe.loc[(dataframe['Percentage'] > 80) & (dataframe['Age'] > 19)]
+
+print('\nResult dataframe :\n', rslt_df)
 
 Q17. How do you calculate the mean of a column in a Pandas DataFrame?
 
+Example:
+
+import pandas as pd
+record = {
+  
+ 'Name': ['Abhishek', 'Rahul', 'Ashu', 'Vinod', 'Ayush' ],
+ 'Age': [21, 19, 20, 18, 20],
+ 'Stream': ['Math', 'Commerce', 'Science', 'Computers', 'Science'],
+ 'Percentage': [84, 92, 99, 73, 85] }
+# create a dataframe
+dataframe = pd.DataFrame(record, columns = ['Name', 'Age', 'Stream', 'Percentage'])
+print("Given Dataframe :\n", dataframe) 
+dataframe.mean(axis = 0)
+
 Q18. How do you calculate the standard deviation of a column in a Pandas DataFrame?
+
+
 
 Q19. How do you calculate the correlation between two columns in a Pandas DataFrame?
 
