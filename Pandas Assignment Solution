@@ -1,19 +1,105 @@
 PandasAssignment
 Q1. How do you load a CSV file into a Pandas DataFrame?
 
+# Importing Pandas and creating alias as pd
+import pandas as pd
+# Reading a dataset
+df = pd.read_csv('https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv')
+
 Q2. How do you check the data type of a column in a Pandas DataFrame?
+
+Using dtypes as in below example :
+
+import pandas as pd
+df = pd.read_csv('https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv')
+df.dtypes
 
 Q3. How do you select rows from a Pandas DataFrame based on a condition?
 
+Example: Printing record where percentage is greater than 80
+
+import pandas as pd
+record = {
+  
+ 'Name': ['Abhishek', 'Rahul', 'Ashu', 'Vinod', 'Ayush' ],
+ 'Age': [21, 19, 20, 18, 20],
+ 'Stream': ['Math', 'Commerce', 'Science', 'Computers', 'Science'],
+ 'Percentage': [84, 92, 99, 73, 85] }
+# create a dataframe
+dataframe = pd.DataFrame(record, columns = ['Name', 'Age', 'Stream', 'Percentage'])
+print("Given Dataframe :\n", dataframe) 
+
+# selecting rows based on condition if % is more than 80
+rslt_df = dataframe[dataframe['Percentage'] > 80]
+  
+print('\nResult dataframe :\n', rslt_df)
+
 Q4. How do you rename columns in a Pandas DataFrame?
+
+Example: Changing Column names to upper case
+
+import pandas as pd
+data1 = { 'Name': ['Jai', 'Anuj', 'Jai', 'Prince', 'Gaurav', 'Anuj', 'Prince', 'Abhi'],
+         'Age' : [27,24,22,32,33,36,27,32],
+         'Address' : ['Nagpur', 'Kanpur', 'Allahabad', 'Kannauj', 'Jaunpur', 'Kanpur', 'Allahabad', 'Aligarh'],
+         'Qualification' : ['Msc', 'MA', 'MCA', 'Phd', 'B.Tech', 'B.Com', 'Msc', 'MA']
+}
+
+# create a dataframe
+dataframe = pd.DataFrame(data1, columns = ['Name', 'Age', 'Address', 'Qualification'])
+print("Given Dataframe :\n", dataframe) 
+dataframe.rename(columns = {'Name':'NAME', 'Age':'AGE', 'Address':'ADDRESS', 'Qualification':'QUALIFICATION'}, inplace = True)
+print("Given Dataframe :\n", dataframe)  
 
 Q5. How do you drop columns in a Pandas DataFrame?
 
+Example: Delete the column named 'Qualification' from the below data frame
+import pandas as pd
+data1 = { 'Name': ['Jai', 'Anuj', 'Jai', 'Prince', 'Gaurav', 'Anuj', 'Prince', 'Abhi'],
+         'Age' : [27,24,22,32,33,36,27,32],
+         'Address' : ['Nagpur', 'Kanpur', 'Allahabad', 'Kannauj', 'Jaunpur', 'Kanpur', 'Allahabad', 'Aligarh'],
+         'Qualification' : ['Msc', 'MA', 'MCA', 'Phd', 'B.Tech', 'B.Com', 'Msc', 'MA']
+}
+
+# create a dataframe
+dataframe = pd.DataFrame(data1, columns = ['Name', 'Age', 'Address', 'Qualification'])
+print("Given Dataframe :\n", dataframe) 
+dataframe.drop('Qualification', inplace=True, axis = 1)
+print("Given Dataframe :\n", dataframe)
+
 Q6. How do you find the unique values in a column of a Pandas DataFrame?
+
+Example: Print unique values in column 'Age'
+
+import pandas as pd
+data1 = { 'Name': ['Jai', 'Anuj', 'Jai', 'Prince', 'Gaurav', 'Anuj', 'Prince', 'Abhi'],
+         'Age' : [27,24,22,32,33,36,27,32],
+         'Address' : ['Nagpur', 'Kanpur', 'Allahabad', 'Kannauj', 'Jaunpur', 'Kanpur', 'Allahabad', 'Aligarh'],
+         'Qualification' : ['Msc', 'MA', 'MCA', 'Phd', 'B.Tech', 'B.Com', 'Msc', 'MA']
+}
+# create a dataframe
+dataframe = pd.DataFrame(data1, columns = ['Name', 'Age', 'Address', 'Qualification'])
+print("Given Dataframe :\n", dataframe) 
+dataframe.Age.unique()
 
 Q7. How do you find the number of missing values in each column of a Pandas DataFrame?
 
+Example:
+
+import pandas as pd
+# Reading dataset
+df = pd.read_csv('https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv')
+# Checking null values
+print("Count if missing values in each column",df.isnull().sum())
+
 Q8. How do you fill missing values in a Pandas DataFrame with a specific value?
+
+Example: Replace NaN values in a data frame with specific value of "Missing"
+import pandas as pd
+import numpy as np
+df = pd.read_csv('https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv')
+df.replace(to_replace = np.nan, value = 'Missing')
+print("Given Dataframe :\n", df) 
 
 Q9. How do you concatenate two Pandas DataFrames?
 
